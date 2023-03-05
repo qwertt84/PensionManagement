@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangbowen.PensionManagement.dao.older.OlderStatusDao">
+    <insert id="Add">
+       INSERT INTO `older_status` values
+        (
+       null,
+       #{olderid},
+       #{name},
+       #{height},
+       #{weight},
+       #{blood_type},
+       #{allergy},
+       #{heart_rate},
+       #{blood_pressure},
+       #{blood_sugar},
+       #{smoke},
+       #{create_time}
+ );
+    </insert>
+   <select id="getAll" resultType="com.jiangbowen.PensionManagement.entity.OlderStatus">
+      SELECT * FROM `older_status`;
+   </select>
+    <select id="getOlderStatusById" resultType="com.jiangbowen.PensionManagement.entity.OlderStatus">
+        SELECT * FROM `older_status` WHERE `id`=#{id};
+    </select>
+    <delete id="Del">
+        DELETE FROM `older_status` where `id`=#{id};
+    </delete>
+    <update id="Update">
+        UPDATE
+            `older_status`
+        SET
+           `olderid`=#{olderid},
+            `name` = #{name},
+           `height`= #{height},
+           `weight`= #{weight},
+           `blood_type`=#{blood_type},
+            `allergy`=#{allergy},
+            `heart_rate`=#{heart_rate},
+            `blood_pressure`=#{blood_pressure},
+           `blood_sugar`=#{blood_sugar},
+            `smoke`=#{smoke},
+           `create_time`= #{create_time}
+        WHERE `id`= #{id};
+    </update>
+</mapper>
