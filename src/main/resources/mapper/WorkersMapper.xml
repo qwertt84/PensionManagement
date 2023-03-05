@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangbowen.PensionManagement.dao.workers.WorkersDao">
+    <insert id="Add">
+       INSERT INTO `workers` values
+        (
+       null,
+       #{username},
+       #{password},
+       #{name},
+       #{sex},
+       #{age},
+       #{addr},
+       #{tel}
+ );
+    </insert>
+   <select id="getAll" resultType="com.jiangbowen.PensionManagement.entity.Workers">
+      SELECT * FROM `workers`;
+   </select>
+    <select id="getWorkersById" resultType="com.jiangbowen.PensionManagement.entity.Workers">
+        SELECT * FROM `workers` WHERE `id`=#{id};
+    </select>
+    <delete id="Del">
+        DELETE FROM `workers` where `id`=#{id};
+    </delete>
+    <update id="Update">
+        UPDATE `workers` SET  `username` = #{username} ,  `password` = #{password} ,  `name` = #{name} , `sex` = #{sex} ,`age` = #{age} , `addr` = #{addr} ,`tel` = #{tel}  WHERE `id`= #{id};
+    </update>
+</mapper>

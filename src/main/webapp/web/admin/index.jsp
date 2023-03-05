@@ -31,7 +31,7 @@
         <li><a href="berth_table.jsp" target="right"><span class="icon-caret-right"></span>床位分配管理</a></li>
         <li><a href="cost_table.jsp" target="right"><span class="icon-caret-right"></span>入住费用管理</a></li>
         <li><a href="complain_table.jsp" target="right"><span class="icon-caret-right"></span>投诉管理</a></li>
-        <li><a href="older_table.jsp" target="right"><span class="icon-caret-right"></span>护工信息管理</a></li>
+        <li><a href="workers_table.jsp" target="right"><span class="icon-caret-right"></span>护工信息管理</a></li>
         <li><a href="older_table.jsp" target="right"><span class="icon-caret-right"></span>护工请假信息管理</a></li>
         <li><a href="older_table.jsp" target="right"><span class="icon-caret-right"></span>护工薪资管理</a></li>
     </ul>
