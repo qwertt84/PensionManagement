@@ -18,15 +18,17 @@
         <div class="padding border-bottom">
             <ul class="search">
                 <li>
-                    <a href="notice_add.jsp" class="button border-green">新增</a>
+                    <a href="leave_add.jsp" class="button border-green">新增</a>
                 </li>
             </ul>
         </div>
-        <table class="table table-hover text-center" id="notice-table">
+        <table class="table table-hover text-center" id="leave-table">
             <tr>
                 <th>id</th>
-                <th>公告类型</th>
-                <th>公告内容</th>
+                <th>护工id</th>
+                <th>姓名</th>
+                <th>请假原因</th>
+                <th>请假时间（天）</th>
                 <th>更新时间</th>
             </tr>
         </table>
@@ -36,7 +38,7 @@
     $(document).ready(function () {
         $.ajax(
             {
-                url: "/notice/getall",
+                url: "/leave/getall",
                 type: "POST",
                 dataType: "JSON",
                 success: function (json) {
@@ -45,8 +47,10 @@
                         for (let i = 0; i < json.message.length; i++) {
                             str = "<tr>" +
                                 "<td>" + json.message[i].id + "</td>" +
-                                "<td>" + json.message[i].type + "</td>" +
-                                "<td>" + json.message[i].data + "</td>" +
+                                "<td>" + json.message[i].workersid + "</td>" +
+                                "<td>" + json.message[i].name + "</td>" +
+                                "<td>" + json.message[i].cause + "</td>" +
+                                "<td>" + json.message[i].leave_time + "</td>" +
                                 "<td>" + formatDate(json.message[i].create_time, '-') + "</td>" +
                                 "<td>" +
                                 '<div class="button-group"> ' +
@@ -55,7 +59,7 @@
                                 ' </div>'
                                 + "</td>" +
                                 "</tr>";
-                            $("#notice-table").append(str);
+                            $("#leave-table").append(str);
                         }
 
                     }
@@ -95,13 +99,14 @@
         array.pop();
         $.ajax(
             {
-                url: "/notice/upnid",
+                url: "/leave/upnid",
                 type: "POST",
                 data: {
                     "id":array[0]
                 },
                 dataType: "JSON",
                 success: function (json) {
+                    alert(json.status);
                     location.href='salary_update.jsp';
                 },
                 error: function (xhr) {
@@ -124,7 +129,7 @@
 
             $.ajax(
                 {
-                    url: "/notice/del",
+                    url: "/leave/del",
                     type: "POST",
                     data: {"id":array[0]},
                     dataType: "JSON",

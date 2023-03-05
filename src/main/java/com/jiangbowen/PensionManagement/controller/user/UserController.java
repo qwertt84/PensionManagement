@@ -102,75 +102,63 @@ public class UserController {
         }
         return message;
     }
-/*    @RequestMapping("update")
+    @RequestMapping("update")
     @ResponseBody
     public Message<String> update(HttpSession session,HttpServletResponse response,HttpServletRequest request,String newpass,String mpass)throws IOException
     {
+        String userid = (String) session.getAttribute("userid");
+        if(userid==null)
+        {
+            response.sendRedirect("/user/exit");
+        }
         String userType = (String)session.getAttribute("userType");
-        System.out.println(newpass);
-        System.out.println(mpass);
-        Message<String> message = new Message<>();
-        String id = (String)session.getAttribute("id");
-        String Code = (String)session.getAttribute("");
+        Message<String> msg = new Message<>();
         switch (userType) {
             case "1":
-                System.out.println("学生");
-                try {
-                    Student studentBySid = studentService.getStudentBySid(id);
-                    if(studentBySid!=null&&studentBySid.getPassword().equals(mpass))
-                    {
-                        userService.UpdateStudent((String) session.getAttribute("id"),newpass);
-                        message.setStatus(200);
-                    }else {
-                        message.setStatus(201);
-                    }
-
-                }catch (Exception e)
-                {
-                    message.setStatus(400);
-                }
+                System.out.println("家属");
                 break;
             case "2":
-                System.out.println("教师");
-                try {
-                    Teacher teacher = teacherService.getTeacherByTid(id);
-                    if(teacher!=null&&teacher.getPassword().equals(mpass))
-                    {
-                        userService.UpdateTeacher((String) session.getAttribute("id"),newpass);
-                        message.setStatus(200);
-                    }else {
-                        message.setStatus(201);
-                    }
-
-                }catch (Exception e)
-                {
-                    message.setStatus(400);
-                }
+                System.out.println("职工");
                 break;
             case "3":
                 System.out.println("管理员");
 
                 try {
-                    Admin admin = userService.getAdminById(id,mpass);
-                    if(admin !=null)
+                    Admin admin = userService.getAdminById(userid, mpass);
+                    if(admin!=null)
                     {
-                        System.out.println(1111);
-                        userService.Update((String) session.getAttribute("id"),newpass);
-                        message.setStatus(200);
-                    }else {
-                        message.setStatus(201);
-                    }
+       /*                 request.getSession().setAttribute("userid",admin.getUserid());
+                        request.getSession().setAttribute("username",admin.getUsername());*/
+                        admin.setPassword(newpass);
+                        int result = 0;
+                        try{
+                            result = userService.AdminUpdate(admin);
+                        }catch (Exception e)
+                        {
 
+                        }
+                        if(result==1||result==0) {
+                            msg.setStatus(200);
+                            msg.setMessage(admin.getUsername());
+                        }else
+                        {
+                            msg.setStatus(220);
+                        }
+                    }
+                    else
+                    {
+                        msg.setStatus(222);
+                        msg.setMessage("账号或密码错误！");
+                    }
                 }catch (Exception e)
                 {
-                    message.setStatus(400);
+                    msg.setStatus(401);
+                    msg.setMessage("数据库发生错误！");
                 }
                 break;
         }
-
-
-        return message;
-    }*/
+        return msg;
+    }
     @RequestMapping("checkCode")//验证码
     public void checkCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

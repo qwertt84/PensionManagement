@@ -32,8 +32,8 @@
         <li><a href="cost_table.jsp" target="right"><span class="icon-caret-right"></span>入住费用管理</a></li>
         <li><a href="complain_table.jsp" target="right"><span class="icon-caret-right"></span>投诉管理</a></li>
         <li><a href="workers_table.jsp" target="right"><span class="icon-caret-right"></span>护工信息管理</a></li>
-        <li><a href="older_table.jsp" target="right"><span class="icon-caret-right"></span>护工请假信息管理</a></li>
-        <li><a href="older_table.jsp" target="right"><span class="icon-caret-right"></span>护工薪资管理</a></li>
+        <li><a href="leave_table.jsp" target="right"><span class="icon-caret-right"></span>护工请假信息管理</a></li>
+        <li><a href="salary_table.jsp" target="right"><span class="icon-caret-right"></span>护工薪资管理</a></li>
     </ul>
     <h2><span class="icon-pencil-square-o"></span>用户设置</h2>
     <ul>

@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:mysql://wl1805cyj.xyz:6000</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="@wl1805cyj.xyz [2]" uuid="b62c3935-cb9f-46fa-852a-5b19d9ed1e84">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://wl1805cyj.xyz:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

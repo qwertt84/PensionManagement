@@ -302,7 +302,7 @@
                     success: function (json) {
                         if(json.status==200)
                         {
-                            location.href='notice_table.jsp';
+                            location.href='salary_table.jsp';
                             alert("修改成功！");
                         }
                         else if(json.status==220)

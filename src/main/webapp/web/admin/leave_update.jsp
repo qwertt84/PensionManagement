@@ -14,12 +14,12 @@
 </head>
 <body style="background: none";>
 <div class="<%--panel admin-panel--%>">
-    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改公告</strong></div>
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改请假</strong></div>
     <div class="body-content">
-        <form class="form-x" id="form-notice">
+        <form class="form-x" id="form-leave">
             <div class="form-group">
                 <div class="label">
-                    <label>公告id：</label>
+                    <label>请假id：</label>
                 </div>
                 <div class="field">
                     <input name="id" id="id" class="input w50" type="text" disabled="disabled">
@@ -28,20 +28,38 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label>公告类型：</label>
+                    <label>员工id：</label>
                 </div>
                 <div class="field">
-                    <input name="type" id="type" class="input w50" type="text">
+                    <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
+                    <input name="workersid" id="workersid" class="input w50" type="text" disabled="disabled">
+                    <div class="tips"></div>
+                </div>
+                <div class="label">
+                    <label>姓名：</label>
+                </div>
+                <div class="field">
+                    <input name="name" id="name" class="input w50" type="text" disabled="disabled">
                     <div class="tips"></div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label>公告内容：</label>
+                    <label>请假理由：</label>
                 </div>
                 <div class="field">
-                   <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
-                    <textarea name="data" id="data" class="input w50" type="text" style="width: 420px;height: 200px"></textarea>
+                    <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
+                    <textarea name="cause" id="cause" class="input w50" type="text" style="width: 420px;height: 200px"></textarea>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>请假时间：</label>
+                </div>
+                <div class="field">
+                    <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
+                    <input name="leave_time" id="leave_time" class="input w50" type="number"/>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -65,7 +83,7 @@
 
     $.ajax(
             {
-              url: "/notice/getnotice",
+              url: "/leave/getleave",
               type: "POST",
               data: '',
               dataType: "JSON",
@@ -74,8 +92,10 @@
                 {
 
                   $("#id").val(json.message.id);
-                  $("#type").val(json.message.type);
-                  $("#data").val(json.message.data);
+                  $("#workersid").val(json.message.workersid);
+                  $("#name").val(json.message.name);
+                  $("#cause").val(json.message.cause);
+                  $("#leave_time").val(json.message.leave_time);
                   $("#create_time").val(formatDate(json.message.create_time,'-'));
 
                 //  $("#mid").find("option[text='pxx']").attr("selected",true);
@@ -118,14 +138,16 @@
 </script>
 <script type="text/javascript">
   $("#btn-update").click(function () {
-    let type=$("#type").val();
-    let data=$("#data").val();
-    if(type.length>0&&data.length>0) {
+      let workersid=$("#workersid").val();
+      let name=$("#name").val();
+      let cause=$("#cause").val();
+      let leave_time=$("#leave_time").val();
+    if(workersid.length>0&&name.length>0&&cause.length>0&&leave_time.length>0) {
       $.ajax(
               {
-                url: "/notice/update",
+                url: "/leave/update",
                 type: "POST",
-                data: {"type":type,"data":data},
+                data: {"workersid":workersid,"name":name,"cause":cause,"leave_time":leave_time},
                 dataType: "JSON",
                 success: function (json) {
                   if(json.status==200)

@@ -4,13 +4,13 @@ import lombok.Data;
 
 @Data
 public class Workers {
-    public Integer id;
-    public String username;
-    public String password;
-    public String name;
-    public String sex;
-    public Integer age;
-    public String addr;
-    public String tel;
+    private Integer id;
+    private String username;
+    private String password;
+    private String name;
+    private String sex;
+    private Integer age;
+    private String addr;
+    private String tel;
 
 }

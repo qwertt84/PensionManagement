@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class Admin {
-    public String userid;
-    public String username;
-    public String password;
-    public Integer age;
-    public String sex;
+    private String userid;
+    private String username;
+    private String password;
+    private Integer age;
+    private String sex;
 }

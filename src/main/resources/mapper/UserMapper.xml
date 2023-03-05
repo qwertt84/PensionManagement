@@ -28,4 +28,11 @@
         SELECT * FROM `admin`
         WHERE `userid`=#{userid} AND `password`=#{password}
     </select>
+    <update id="AdminUpdate">
+        UPDATE
+            `admin`
+        SET
+            `password`= #{password}
+        WHERE `userid`= #{userid};
+    </update>
 </mapper>

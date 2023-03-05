@@ -56,7 +56,7 @@
                     success: function (json) {
                         if(json.status==200)
                         {
-                            location.href='notice_table.jsp';
+                            location.href='salary_table.jsp';
                             alert("添加成功！");
                         }
                         else if(json.status==220)

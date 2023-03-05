@@ -16,6 +16,7 @@
       <w>getolderstatus</w>
       <w>getuserid</w>
       <w>getusername</w>
+      <w>getworkersid</w>
       <w>jiangbowen</w>
       <w>leftnav</w>
       <w>loginbox</w>
@@ -28,6 +29,7 @@
       <w>pagehelper</w>
       <w>pintuer</w>
       <w>upnid</w>
+      <w>workersid</w>
     </words>
   </dictionary>
 </component>

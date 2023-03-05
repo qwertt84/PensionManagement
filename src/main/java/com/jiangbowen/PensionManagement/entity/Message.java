@@ -1,10 +1,13 @@
 package com.jiangbowen.PensionManagement.entity;
 
+import lombok.Data;
+
+@Data
 public class Message<T> {
    private Integer status;
    private T message;
 
-    public Integer getStatus() {
+/*    private Integer getStatus() {
         return status;
     }
 
@@ -18,5 +21,5 @@ public class Message<T> {
 
     public void setMessage(T message) {
         this.message = message;
-    }
+    }*/
 }
