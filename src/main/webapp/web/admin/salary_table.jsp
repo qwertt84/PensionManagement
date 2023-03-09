@@ -48,7 +48,7 @@
                             str = "<tr>" +
                                 "<td>" + json.message[i].id + "</td>" +
                                 "<td>" + json.message[i].workersid + "</td>" +
-                                "<td>" + json.message[i].name + "</td>" +
+                                "<td>" + json.message[i].username + "</td>" +
                                 "<td>" + json.message[i].salary + "</td>" +
                                 "<td>" + formatDate(json.message[i].salary_time, '-') + "</td>" +
                                 "<td>" + formatDate(json.message[i].create_time, '-') + "</td>" +

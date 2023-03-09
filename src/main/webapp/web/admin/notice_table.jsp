@@ -102,7 +102,7 @@
                 },
                 dataType: "JSON",
                 success: function (json) {
-                    location.href='salary_update.jsp';
+                    location.href='notice_update.jsp';
                 },
                 error: function (xhr) {
                     window.parent.location.href="/user/exit";
@@ -129,7 +129,7 @@
                     data: {"id":array[0]},
                     dataType: "JSON",
                     success: function (json) {
-                        location.href='salary_table.jsp';
+                        location.href='notice_table.jsp';
                     },
                     error: function (xhr) {
                         window.parent.location.href="/user/exit";

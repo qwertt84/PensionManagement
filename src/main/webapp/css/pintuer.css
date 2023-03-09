@@ -293,7 +293,7 @@ td,th{padding:0;}
 .input-file input[type="file"]{position:absolute;top:0;right:0;font-size:14px;background-color:#fff;transform:translate(-300px, 0px) scale(4);height:40px;opacity:0;filter:alpha(opacity=0);}
 .input:focus{border-color:#0ae;transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;}
 .input-auto{width:auto;display:inline-block;}
-input[disabled],input[readonly],textarea[disabled],textarea[readonly],select[disabled],select[readonly]{cursor:not-allowed;background:#eee;}/*IE6无效*/
+input[disabled],input[readonly],textarea[disabled],textarea[readonly],select[disabled],select[readonly]{cursor:not-allowed;}/*IE6无效*/
 textarea.input{height:auto;}
 .input-note, .label .float-right{color:#999;font-size:12px;padding-top:2px;line-height:18px;}
 .field{position:relative;}
@@ -358,7 +358,7 @@ textarea.input{height:auto;}
 .list-link a:hover{background-color:#f5f5f5;transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;}
 .list-link a.active:link,.list-link a.active:visited{background-color:#f5f5f5;}
 .panel{border:solid 1px #ddd;border-radius:4px;}
-.panel-head{background-color:#fcfcfc;padding:10px 15px;border-radius:4px 4px 0 0;border-bottom:solid 1px #ddd;}
+.panel-head{padding:10px 15px;border-radius:4px 4px 0 0;border-bottom:solid 1px}
 .panel-foot{background-color:#f5f5f5;padding:10px 15px;border-radius:0 0 4px 4px;border-top:solid 1px #ddd;}
 .panel-body{padding:15px;}
 .panel .bg-main,.panel .bg-sub,.panel .bg-dot,.panel .bg-red,.panel .bg-yellow,.panel .bg-green{color:#fff;}

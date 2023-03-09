@@ -48,7 +48,7 @@
                             str = "<tr>" +
                                 "<td>" + json.message[i].id + "</td>" +
                                 "<td>" + json.message[i].workersid + "</td>" +
-                                "<td>" + json.message[i].name + "</td>" +
+                                "<td>" + json.message[i].username + "</td>" +
                                 "<td>" + json.message[i].cause + "</td>" +
                                 "<td>" + json.message[i].leave_time + "</td>" +
                                 "<td>" + formatDate(json.message[i].create_time, '-') + "</td>" +
@@ -106,8 +106,7 @@
                 },
                 dataType: "JSON",
                 success: function (json) {
-                    alert(json.status);
-                    location.href='salary_update.jsp';
+                    location.href='leave_update.jsp';
                 },
                 error: function (xhr) {
                     window.parent.location.href="/user/exit";

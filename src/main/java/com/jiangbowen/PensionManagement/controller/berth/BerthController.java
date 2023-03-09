@@ -66,6 +66,7 @@ public class BerthController {
                }
                msg.setStatus(200);
                msg.setMessage(getberth);
+               session.removeAttribute("id");
            }catch (Exception e)
            {
                msg.setStatus(401);//数据库异常
@@ -91,10 +92,8 @@ public class BerthController {
             response.sendRedirect("/user/exit");
         }
         try {
-            Integer id = (Integer)session.getAttribute("id");
             java.util.Date time = new java.util.Date();
             berth.setCreate_time(new Date(time.getTime()));
-            berth.setId(id);
             int result;
             try {
                 result= berthService.Update(berth);

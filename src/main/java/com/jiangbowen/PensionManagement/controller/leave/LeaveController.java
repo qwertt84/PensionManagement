@@ -19,6 +19,43 @@ import java.util.ArrayList;
 public class LeaveController {
     @Autowired
     private LeaveService leaveService;
+
+    @RequestMapping("getleavebyuid")//获取所有请假
+    @ResponseBody
+    public Message<ArrayList<Leave>> getLeaveByUId(HttpSession session, HttpServletResponse response) throws Exception {
+        Message<ArrayList<Leave>> msg=new Message<>();
+        String userid = (String) session.getAttribute("userid");
+        if(userid==null)
+        {
+            response.sendRedirect("/user/exit");
+        }
+              try {
+            try {
+                Integer workersid = (Integer) session.getAttribute("uid");
+                ArrayList<Leave> leaves= leaveService.getLeaveByUId(workersid);
+                if(leaves.size()==0)
+                {
+                    msg.setStatus(400);//该数据不存在
+                }else
+                {
+                    msg.setMessage(leaves);
+                    msg.setStatus(200);
+                }
+            }catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                msg.setStatus(401);//数据库异常
+                return msg;
+            }
+
+        }catch (Exception e)
+        {
+            msg.setStatus(402);//session失效了
+            return msg;
+        }
+        return msg;
+    }
+
     @RequestMapping("getall")//获取所有请假
     @ResponseBody
     public Message<ArrayList<Leave>> getAll(HttpSession session, HttpServletResponse response) throws Exception {
@@ -66,6 +103,7 @@ public class LeaveController {
                }
                msg.setStatus(200);
                msg.setMessage(getleave);
+               session.removeAttribute("id");
            }catch (Exception e)
            {
                msg.setStatus(401);//数据库异常
@@ -91,10 +129,8 @@ public class LeaveController {
             response.sendRedirect("/user/exit");
         }
         try {
-            Integer id = (Integer)session.getAttribute("id");
             java.util.Date time = new java.util.Date();
             leave.setCreate_time(new Date(time.getTime()));
-            leave.setId(id);
             int result;
             try {
                 result= leaveService.Update(leave);

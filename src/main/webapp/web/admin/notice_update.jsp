@@ -118,19 +118,20 @@
 </script>
 <script type="text/javascript">
   $("#btn-update").click(function () {
+    let id=$("#id").val();
     let type=$("#type").val();
     let data=$("#data").val();
-    if(type.length>0&&data.length>0) {
+    if(id.length>0&&type.length>0&&data.length>0) {
       $.ajax(
               {
                 url: "/notice/update",
                 type: "POST",
-                data: {"type":type,"data":data},
+                data: {"id":id,"type":type,"data":data},
                 dataType: "JSON",
                 success: function (json) {
                   if(json.status==200)
                   {
-                    location.href='salary_table.jsp';
+                    location.href='notice_table.jsp';
                       alert("修改成功！");
                   }
                   else if(json.status==220)

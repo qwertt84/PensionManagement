@@ -9,7 +9,9 @@
        #{sex},
        #{age},
        #{addr},
-       #{tel}
+       #{tel},
+       #{familyid},
+       #{familyname}
  );
     </insert>
    <select id="getAll" resultType="com.jiangbowen.PensionManagement.entity.Older">
@@ -18,10 +20,14 @@
     <select id="getOlderById" resultType="com.jiangbowen.PensionManagement.entity.Older">
         SELECT * FROM `older` WHERE `id`=#{id};
     </select>
+
+    <select id="getOlderByUId" resultType="com.jiangbowen.PensionManagement.entity.Older">
+        SELECT * FROM `older` WHERE `familyid`=#{familyid};
+    </select>
     <delete id="Del">
         DELETE FROM `older` where `id`=#{id};
     </delete>
     <update id="Update">
-        UPDATE `older` SET  `name` = #{name} , `sex` = #{sex} ,`age` = #{age} , `addr` = #{addr} ,`tel` = #{tel}  WHERE `id`= #{id};
+        UPDATE `older` SET  `name` = #{name} , `sex` = #{sex} ,`age` = #{age} , `addr` = #{addr} ,`tel` = #{tel}, `familyid` = #{familyid} ,`familyname` = #{familyname}  WHERE `id`= #{id};
     </update>
 </mapper>

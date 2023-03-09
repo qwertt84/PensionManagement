@@ -12,4 +12,5 @@ public interface LeaveDao {
     Integer Add(Leave leave);
     Integer Update(Leave leave);
     Leave getLeaveById(Integer id);
+    ArrayList<Leave> getLeaveByUId(Integer workersid);
 }

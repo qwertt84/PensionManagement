@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class Workers {
     private Integer id;
-    private String username;
+    private String userid;
     private String password;
-    private String name;
+    private String username;
     private String sex;
     private Integer age;
     private String addr;

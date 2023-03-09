@@ -1,7 +1,9 @@
 package com.jiangbowen.PensionManagement.controller.user;
 
+import com.jiangbowen.PensionManagement.entity.Family;
 import com.jiangbowen.PensionManagement.entity.Message;
 import com.jiangbowen.PensionManagement.entity.Admin;
+import com.jiangbowen.PensionManagement.entity.Workers;
 import com.jiangbowen.PensionManagement.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,9 +48,51 @@ public class UserController {
         switch (userType) {
             case "1":
                 System.out.println("家属");
+                try {
+                    Family family = userService.getFamilyById(userid, password);
+                    if(family!=null)
+                    {
+                        request.getSession().setAttribute("userid",family.getUserid());
+                        request.getSession().setAttribute("username",family.getUsername());
+                        request.getSession().setAttribute("uid",family.getId());
+                        msg.setStatus(200);
+                        msg.setMessage(family.getUsername());
+                    }
+                    else
+                    {
+                        msg.setStatus(222);
+                        msg.setMessage("账号或密码错误！");
+                    }
+                }catch (Exception e)
+                {
+                    msg.setStatus(500);
+                    msg.setMessage("数据库发生错误！");
+                    System.out.println(e);
+                }
                 break;
             case "2":
                 System.out.println("职工");
+                try {
+                    Workers workers = userService.getWorkersById(userid, password);
+                    if(workers!=null)
+                    {
+                        request.getSession().setAttribute("userid",workers.getUserid());
+                        request.getSession().setAttribute("username",workers.getUsername());
+                        request.getSession().setAttribute("uid",workers.getId());
+                        msg.setStatus(200);
+                        msg.setMessage(workers.getUsername());
+                    }
+                    else
+                    {
+                        msg.setStatus(222);
+                        msg.setMessage("账号或密码错误！");
+                    }
+                }catch (Exception e)
+                {
+                    msg.setStatus(500);
+                    msg.setMessage("数据库发生错误！");
+                    System.out.println(e);
+                }
                 break;
             case "3":
                 System.out.println("管理员");
@@ -102,6 +146,18 @@ public class UserController {
         }
         return message;
     }
+    @RequestMapping("getuid")
+    @ResponseBody
+    public Message<Integer> getUId(HttpSession session)
+    {
+        Message<Integer> message = new Message<>();
+        Integer uid = (Integer) session.getAttribute("uid");
+        if(uid!=null) {
+            message.setMessage(uid);
+            message.setStatus(200);
+        }
+        return message;
+    }
     @RequestMapping("update")
     @ResponseBody
     public Message<String> update(HttpSession session,HttpServletResponse response,HttpServletRequest request,String newpass,String mpass)throws IOException
@@ -116,9 +172,73 @@ public class UserController {
         switch (userType) {
             case "1":
                 System.out.println("家属");
+                try {
+                    Family family = userService.getFamilyById(userid, mpass);
+                    if(family!=null)
+                    {
+       /*                 request.getSession().setAttribute("userid",admin.getUserid());
+                        request.getSession().setAttribute("username",admin.getUsername());*/
+                        family.setPassword(newpass);
+                        int result = 0;
+                        try{
+                            result = userService.FamilyUpdate(family);
+                        }catch (Exception e)
+                        {
+
+                        }
+                        if(result==1||result==0) {
+                            msg.setStatus(200);
+                            msg.setMessage(family.getUsername());
+                        }else
+                        {
+                            msg.setStatus(220);
+                        }
+                    }
+                    else
+                    {
+                        msg.setStatus(222);
+                        msg.setMessage("账号或密码错误！");
+                    }
+                }catch (Exception e)
+                {
+                    msg.setStatus(401);
+                    msg.setMessage("数据库发生错误！");
+                }
                 break;
             case "2":
                 System.out.println("职工");
+                try {
+                    Workers workers = userService.getWorkersById(userid, mpass);
+                    if(workers!=null)
+                    {
+       /*                 request.getSession().setAttribute("userid",admin.getUserid());
+                        request.getSession().setAttribute("username",admin.getUsername());*/
+                        workers.setPassword(newpass);
+                        int result = 0;
+                        try{
+                            result = userService.WorkersUpdate(workers);
+                        }catch (Exception e)
+                        {
+
+                        }
+                        if(result==1||result==0) {
+                            msg.setStatus(200);
+                            msg.setMessage(workers.getUsername());
+                        }else
+                        {
+                            msg.setStatus(220);
+                        }
+                    }
+                    else
+                    {
+                        msg.setStatus(222);
+                        msg.setMessage("账号或密码错误！");
+                    }
+                }catch (Exception e)
+                {
+                    msg.setStatus(401);
+                    msg.setMessage("数据库发生错误！");
+                }
                 break;
             case "3":
                 System.out.println("管理员");

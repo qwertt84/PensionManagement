@@ -12,4 +12,5 @@ public interface OlderDao {
     Integer Del(Integer id);
     Integer Update(Older older);
     Older getOlderById(Integer id);
+    ArrayList<Older> getOlderByUId(Integer familyid);
 }

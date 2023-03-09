@@ -45,6 +45,41 @@ public class OlderController {
         msg.setStatus(200);
         return msg;
     }
+    @RequestMapping("getolderbyuid")
+    @ResponseBody
+    public Message<ArrayList<Older>> getOlderByUID(HttpSession session, HttpServletResponse response) throws Exception
+    {
+        Message<ArrayList<Older>> msg=new Message<>();
+        String userid = (String) session.getAttribute("userid");
+        if(userid==null)
+        {
+            response.sendRedirect("/user/exit");
+        }
+
+        try {
+            try {
+                Integer familyid = (Integer) session.getAttribute("uid");
+                ArrayList<Older> olderByUId = olderService.getOlderByUId(familyid);
+                if(olderByUId==null)
+                {
+                    msg.setStatus(400);//该数据不存在
+                }
+                msg.setStatus(200);
+                msg.setMessage(olderByUId);
+            }catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                msg.setStatus(401);//数据库异常
+                return msg;
+            }
+
+        }catch (Exception e)
+        {
+            msg.setStatus(402);//session失效了
+            return msg;
+        }
+        return msg;
+    }
     @RequestMapping("getolderid")
     @ResponseBody
     public Message<Older> getOlderId(Integer id,HttpSession session, HttpServletResponse response) throws Exception {

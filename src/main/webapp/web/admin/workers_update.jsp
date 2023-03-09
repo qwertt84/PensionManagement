@@ -31,7 +31,7 @@
                     <label>用户名：</label>
                 </div>
                 <div class="field">
-                    <input name="username" id="username" class="input w50" type="text" disabled="disabled">
+                    <input name="userid" id="userid" class="input w50" type="text" disabled="disabled">
                     <div class="tips"></div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="field">
                     <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
-                    <input name="name" id="name" class="input w50" type="text">
+                    <input name="username" id="username" class="input w50" type="text">
                     <div class="tips"></div>
                 </div>
             </div>
@@ -70,6 +70,7 @@
                 <div class="field">
                     <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
                     <input name="age" id="age" class="input w50" type="number">
+                        <label  class="input w50" style="width: 7%">岁</label>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -110,9 +111,9 @@
                 success: function (json) {
                     if(json.status==200) {
                         $("#id").val(json.message.id);
-                        $("#username").val(json.message.username);
+                        $("#userid").val(json.message.userid);
                         $("#password").val(json.message.password);
-                        $("#name").val(json.message.name);
+                        $("#username").val(json.message.username);
                         $("input[value=" + json.message.sex +
                             "]").attr('checked', 'true');
                         $("#age").val(json.message.age);
@@ -179,24 +180,26 @@
 </script>--%>
 <script>
     $("#btn-update").click(function () {
-        let username=$("#username").val();
+        let id=$("#id").val();
+        let userid=$("#userid").val();
         let password=$("#password").val();
-        let name=$("#name").val();
+        let username=$("#username").val();
         let sex=$("input[name='sex']:checked").val();
         let age=$("#age").val();
         let addr=$("#addr").val();
         let tel=$("#tel").val();
-        if(name.length>0&&sex.length>0&&age>0&&addr.length>0&&tel.length>5) {
+        if(id.length>0&&username.length>0&&password.length>0&&userid.length>0&&sex.length>0&&age>0&&addr.length>0&&tel.length>5) {
             $.ajax(
                 {
                     url: "/workers/update",
                     type: "POST",
-                    data: {"username":username,"password":password,"name":name,"sex":sex,"age":age,"addr":addr,"tel":tel},
+                    data: {"id":id,"userid":userid,"password":password,"username":username,"sex":sex,"age":age,"addr":addr,"tel":tel},
                     dataType: "JSON",
                     success: function (json) {
                         if(json.status==200)
                         {
                             location.href='workers_table.jsp';
+                            alert("修改成功！");
                         }
                         else if(json.status==220)
                         {

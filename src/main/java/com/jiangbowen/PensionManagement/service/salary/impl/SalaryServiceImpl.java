@@ -35,4 +35,8 @@ public class SalaryServiceImpl implements SalaryService {
     public Integer Update(Salary salary) {
         return salaryDao.Update(salary);
     }
+    @Override
+    public Salary getSalaryByUId(Integer workersid) {
+        return salaryDao.getSalaryByUId(workersid);
+    }
 }

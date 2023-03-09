@@ -154,6 +154,7 @@
                         if(json.status==200)
                         {
                             location.href='berth_table.jsp';
+                            alert("添加成功！");
                         }
                         else if(json.status==220)
                         {

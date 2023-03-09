@@ -16,4 +16,6 @@ public interface OlderService {
     Integer Del(Integer id);
 
     Integer Update(Older older);
+
+    ArrayList<Older>  getOlderByUId(Integer familyid);
 }

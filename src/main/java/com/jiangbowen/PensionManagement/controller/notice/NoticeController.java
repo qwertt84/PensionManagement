@@ -66,6 +66,7 @@ public class NoticeController {
                }
                msg.setStatus(200);
                msg.setMessage(getnotice);
+               session.removeAttribute("id");
            }catch (Exception e)
            {
                msg.setStatus(401);//数据库异常
@@ -91,10 +92,8 @@ public class NoticeController {
             response.sendRedirect("/user/exit");
         }
         try {
-            Integer id = (Integer)session.getAttribute("id");
             java.util.Date time = new java.util.Date();
             notice.setCreate_time(new Date(time.getTime()));
-            notice.setId(id);
             int result;
             try {
                 result= noticeService.Update(notice);

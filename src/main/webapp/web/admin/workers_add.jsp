@@ -23,7 +23,7 @@
                 </div>
                 <div class="field">
                     <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
-                    <input name="username" id="username" class="input w50" type="text">
+                    <input name="userid" id="userid" class="input w50" type="text">
                     <div class="tips"></div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="field">
                    <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
-                    <input name="name" id="name" class="input w50" type="text">
+                    <input name="username" id="username" class="input w50" type="text">
                     <div class="tips"></div>
                 </div>
             </div>
@@ -63,6 +63,7 @@
                 <div class="field">
                     <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
                     <input name="age" id="age" class="input w50" type="number">
+                    <label  class="input w50" style="width: 7%">岁</label>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -94,19 +95,19 @@
 </div>
 <script type="text/javascript">
     $("#btn-add").click(function () {
-        let username=$("#username").val();
+        let userid=$("#userid").val();
         let password=$("#password").val();
-        let name=$("#name").val();
+        let username=$("#username").val();
         let sex=$("input[name='sex']:checked").val();
         let age=$("#age").val();
         let addr=$("#addr").val();
         let tel=$("#tel").val();
-        if(username.length>0&&password.length>0&&name.length>0&&sex.length>0&&age>0&&addr.length>0&&tel.length>5) {
+        if(username.length>0&&password.length>0&&userid.length>0&&sex.length>0&&age>0&&addr.length>0&&tel.length>5) {
             $.ajax(
                 {
                     url: "/workers/add",
                     type: "POST",
-                    data: {"username":username,"password":password,"name":name,"sex":sex,"age":age,"addr":addr,"tel":tel},
+                    data: {"userid":userid,"password":password,"username":username,"sex":sex,"age":age,"addr":addr,"tel":tel},
                     dataType: "JSON",
                     success: function (json) {
                         if(json.status==200)

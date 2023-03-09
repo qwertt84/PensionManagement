@@ -12,4 +12,5 @@ public interface SalaryDao {
     Integer Del(Integer id);
     Integer Update(Salary salary);
     Salary getSalaryById(Integer id);
+    Salary getSalaryByUId(Integer workersid);
 }

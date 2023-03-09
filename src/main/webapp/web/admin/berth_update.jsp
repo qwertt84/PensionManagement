@@ -110,18 +110,19 @@
 </div>
 <script type="text/javascript">
     $("#btn-update").click(function () {
+        let id=$("#id").val();
         let olderid=$("#olderid").val();
         let name=$("#name").val();
         let ridgepole=$("#ridgepole").val();
         let floor=$("#floor").val();
         let building=$("#building").val();
         let berth=$("#berth").val();
-        if(olderid.length>0&&name.length>0&&ridgepole.length>0&&floor.length>0&&building.length>0&&berth.length>0) {
+        if(id.length>0&&olderid.length>0&&name.length>0&&ridgepole.length>0&&floor.length>0&&building.length>0&&berth.length>0) {
             $.ajax(
                 {
                     url: "/berth/update",
                     type: "POST",
-                    data: {"olderid":olderid,"name":name,"ridgepole":ridgepole,"floor":floor,"building":building,"berth":berth},
+                    data: {"id":id,"olderid":olderid,"name":name,"ridgepole":ridgepole,"floor":floor,"building":building,"berth":berth},
                     dataType: "JSON",
                     success: function (json) {
                         if(json.status==200)

@@ -4,16 +4,26 @@
       <w>addr</w>
       <w>bouncein</w>
       <w>dialct</w>
+      <w>familyid</w>
+      <w>familyname</w>
       <w>getall</w>
       <w>getberth</w>
+      <w>getcomplain</w>
       <w>getcost</w>
+      <w>getfamily</w>
+      <w>getleave</w>
+      <w>getleavebyuid</w>
       <w>getmalfunction</w>
       <w>getname</w>
       <w>getnotice</w>
       <w>getnoticebyid</w>
       <w>getolder</w>
+      <w>getolderbyuid</w>
       <w>getolderid</w>
       <w>getolderstatus</w>
+      <w>getolderstatusbyuid</w>
+      <w>getsalarybyuid</w>
+      <w>getsalaryid</w>
       <w>getuserid</w>
       <w>getusername</w>
       <w>getworkersid</w>

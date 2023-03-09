@@ -50,9 +50,9 @@
                         for (let i=0;i<json.message.length;i++) {
                             str="<tr>"+
                                 "<td>" + json.message[i].id + "</td>" +
-                                "<td>" + json.message[i].username + "</td>" +
+                                "<td>" + json.message[i].userid + "</td>" +
                                 "<td>" + json.message[i].password + "</td>" +
-                                "<td>" + json.message[i].name+"</td>" +
+                                "<td>" + json.message[i].username+"</td>" +
                                 "<td>" + json.message[i].sex+"</td>" +
                                 "<td>" + json.message[i].age+"</td>" +
                                 "<td>" + json.message[i].addr+"</td>" +

@@ -12,4 +12,4 @@ public interface LeaveService {
     Integer Add(Leave leave);
     Integer Update(Leave leave);
     Leave getLeaveById(Integer id);
-}
+    ArrayList<Leave> getLeaveByUId(Integer workersid);}

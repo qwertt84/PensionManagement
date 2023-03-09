@@ -46,6 +46,43 @@ public class SalaryController {
         msg.setStatus(200);
         return msg;
     }
+    @RequestMapping("getsalarybyuid")
+    @ResponseBody
+    public Message<Salary> getSalaryByUId(HttpSession session, HttpServletResponse response) throws Exception
+      {
+        Message<Salary> msg=new Message<>();
+        String userid = (String) session.getAttribute("userid");
+        if(userid==null)
+        {
+            response.sendRedirect("/user/exit");
+        }
+        try {
+            try {
+                Integer workersid = (Integer) session.getAttribute("uid");
+                System.out.println(workersid);
+                Salary salary= salaryService.getSalaryByUId(workersid);
+                if(salary==null)
+                {
+                    msg.setStatus(400);//该数据不存在
+                }else
+                {
+                    msg.setMessage(salary);
+                    msg.setStatus(200);
+                }
+            }catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                msg.setStatus(401);//数据库异常
+                return msg;
+            }
+
+        }catch (Exception e)
+        {
+            msg.setStatus(402);//session失效了
+            return msg;
+        }
+        return msg;
+    }
     @RequestMapping("getsalaryid")
     @ResponseBody
     public Message<Salary> getSalaryId(Integer id,HttpSession session, HttpServletResponse response) throws Exception {

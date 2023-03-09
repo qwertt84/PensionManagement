@@ -46,6 +46,52 @@ public class CostController {
         msg.setStatus(200);
         return msg;
     }
+    @RequestMapping("pay")//将需要修改的费用id存入session
+    @ResponseBody
+    public Message<String> Pay(Integer id, HttpServletResponse response) throws Exception {
+        Message<String> msg=new Message<>();
+        try {
+            java.util.Date time = new java.util.Date();
+            try {
+                Cost cost = costService.getCostById(id);
+                if(cost==null)
+                {
+                    msg.setStatus(400);//该数据不存在
+                }else
+                {
+                    cost.setCreate_time(new Date(time.getTime()));
+                    cost.setCost(0);
+                    int result;
+                    try {
+                        result= costService.Update(cost);
+                    }catch (Exception e)
+                    {
+                        msg.setStatus(401);//数据库错误
+                        return msg;
+                    }
+                    if(result==1) {
+                        msg.setStatus(200);//修改成功
+                    }
+                    else if(result==0)
+                    {
+                        msg.setStatus(220);//修改失败
+                    }
+                }
+
+            }catch (Exception e)
+            {
+                msg.setStatus(401);//数据库错误
+                return msg;
+            }
+
+        }catch (Exception e)
+        {
+            msg.setStatus(402);//session失效了
+        }
+
+        msg.setStatus(200);
+        return msg;
+    }
    // getcost
    @RequestMapping("getcost")
    @ResponseBody
@@ -66,6 +112,7 @@ public class CostController {
                }
                msg.setStatus(200);
                msg.setMessage(getcost);
+               session.removeAttribute("id");
            }catch (Exception e)
            {
                msg.setStatus(401);//数据库异常
@@ -91,10 +138,8 @@ public class CostController {
             response.sendRedirect("/user/exit");
         }
         try {
-            Integer id = (Integer)session.getAttribute("id");
             java.util.Date time = new java.util.Date();
             cost.setCreate_time(new Date(time.getTime()));
-            cost.setId(id);
             int result;
             try {
                 result= costService.Update(cost);

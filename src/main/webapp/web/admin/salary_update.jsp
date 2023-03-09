@@ -14,7 +14,7 @@
 </head>
 <body style="background: none";>
 <div class="<%--panel admin-panel--%>">
-    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改请假</strong></div>
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改薪资信息</strong></div>
     <div class="body-content">
         <form class="form-x" id="form-leave">
             <div class="form-group">
@@ -39,7 +39,7 @@
                     <label>姓名：</label>
                 </div>
                 <div class="field">
-                    <input name="name" id="name" class="input w50" type="text" disabled="disabled">
+                    <input name="username" id="username" class="input w50" type="text" disabled="disabled">
                     <div class="tips"></div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 {
                   $("#id").val(json.message.id);
                   $("#workersid").val(json.message.workersid);
-                  $("#name").val(json.message.name);
+                  $("#username").val(json.message.username);
                   $("#salary").val(json.message.salary);
                   $("#salary_time").val(dateVal(json.message.salary_time));
                   $("#create_time").val(formatDate(json.message.create_time,'-'));
@@ -144,16 +144,17 @@
 </script>
 <script type="text/javascript">
   $("#btn-update").click(function () {
+      let id=$("#id").val();
       let workersid=$("#workersid").val();
-      let name=$("#name").val();
+      let username=$("#username").val();
       let salary=$("#salary").val();
       let salary_time=$("#salary_time").val();
-      if(workersid.length>0&&name.length>0&&salary.length>0&&salary_time.length>0) {
+      if(id.length>0&&workersid.length>0&&username.length>0&&salary.length>0&&salary_time.length>0) {
           $.ajax(
               {
                 url: "/salary/update",
                 type: "POST",
-                data: {"workersid":workersid,"name":name,"salary":salary,"salary_time":salary_time},
+                data: {"id":id,"workersid":workersid,"username":username,"salary":salary,"salary_time":salary_time},
                 dataType: "JSON",
                 success: function (json) {
                   if(json.status==200)

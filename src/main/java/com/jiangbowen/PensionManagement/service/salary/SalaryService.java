@@ -16,4 +16,6 @@ public interface SalaryService {
     Integer Del(Integer id);
 
     Integer Update(Salary salary);
-}
+
+    Salary getSalaryByUId(Integer workersid);
+    }

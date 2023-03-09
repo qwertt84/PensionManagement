@@ -31,7 +31,7 @@
                     <label>姓名：</label>
                 </div>
                 <div class="field">
-                    <input name="name" id="name" class="input w50" type="text">
+                    <input name="username" id="username" class="input w50" type="text">
                     <div class="tips"></div>
                 </div>
             </div>
@@ -51,7 +51,8 @@
                 </div>
                 <div class="field">
                     <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
-                    <input name="leave_time" id="leave_time" class="input w50" type="number" style="width: 420px;height: 200px"/>
+                    <input name="leave_time" id="leave_time" class="input w50" type="number"/>
+                    <label  class="input w50" style="width: 7%">天</label>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -78,10 +79,10 @@
                             if(json.message==null)
                             {
                                 alert("查无此护工！");
-                                $("#name").val("");
+                                $("#username").val("");
                             }
                             else {
-                                $("#name").val(json.message.name);
+                                $("#username").val(json.message.username);
                             }
 
                         }
@@ -104,7 +105,7 @@
     });
     $("#btn-add").click(function () {
         let workersid=$("#workersid").val();
-        let name=$("#name").val();
+        let username=$("#username").val();
         let cause=$("#cause").val();
         let leave_time=$("#leave_time").val();
         if(workersid.length>0&&name.length>0&&cause.length>0&&leave_time.length>0) {
@@ -112,7 +113,7 @@
                 {
                     url: "/leave/add",
                     type: "POST",
-                    data: {"workersid":workersid,"name":name,"cause":cause,"leave_time":leave_time},
+                    data: {"workersid":workersid,"username":username,"cause":cause,"leave_time":leave_time},
                     dataType: "JSON",
                     success: function (json) {
                         if(json.status==200)

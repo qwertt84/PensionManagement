@@ -1,7 +1,9 @@
 package com.jiangbowen.PensionManagement.controller.older;
 
 import com.jiangbowen.PensionManagement.entity.Message;
+import com.jiangbowen.PensionManagement.entity.Older;
 import com.jiangbowen.PensionManagement.entity.OlderStatus;
+import com.jiangbowen.PensionManagement.service.older.OlderService;
 import com.jiangbowen.PensionManagement.service.older.OlderStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 public class OlderStatusController {
     @Autowired
     private OlderStatusService olderStatusService;
+    @Autowired
+    private OlderService olderService;
     @RequestMapping("getall")
     @ResponseBody
     public Message<ArrayList<OlderStatus> > getAll(HttpSession session, HttpServletResponse response)throws Exception
@@ -46,7 +50,56 @@ public class OlderStatusController {
         msg.setStatus(200);
         return msg;
     }
+    @RequestMapping("getolderstatusbyuid")
+    @ResponseBody
+    public Message<ArrayList<OlderStatus>> getOlderByUID(HttpSession session, HttpServletResponse response) throws Exception
+    {
+        Message<ArrayList<OlderStatus>> msg=new Message<>();
+        ArrayList<OlderStatus> olderStatuses=new ArrayList<>();
+        String userid = (String) session.getAttribute("userid");
+        if(userid==null)
+        {
+            response.sendRedirect("/user/exit");
+        }
+        try {
+            try {
+                Integer familyid = (Integer) session.getAttribute("uid");
+                ArrayList<Older> olderByUId = olderService.getOlderByUId(familyid);
+                if(olderByUId==null)
+                {
+                    msg.setStatus(400);//该数据不存在
+                }
+                try {
+                    for (Older older : olderByUId) {
+                        OlderStatus olderStatusById = olderStatusService.getOlderStatusById(older.getId());
+                        olderStatuses.add(olderStatusById);
+                    }
+                    if(olderStatuses==null)
+                    {
+                        msg.setStatus(400);//该数据不存在
+                    }
+                    msg.setStatus(200);
+                    msg.setMessage(olderStatuses);
+                }catch (Exception e)
+                {
+                    System.out.println(e.getMessage());
+                    msg.setStatus(401);//数据库异常
+                }
 
+            }catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                msg.setStatus(401);//数据库异常
+                return msg;
+            }
+
+        }catch (Exception e)
+        {
+            msg.setStatus(402);//session失效了
+            return msg;
+        }
+        return msg;
+    }
     @RequestMapping("getolderstatus")
     @ResponseBody
     public Message<OlderStatus> getOlderstatusById(HttpSession session, HttpServletResponse response) throws Exception {

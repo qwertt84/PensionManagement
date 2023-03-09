@@ -36,4 +36,8 @@ public class LeaveServiceImpl implements LeaveService {
     public Leave getLeaveById(Integer id) {
         return leaveDao.getLeaveById(id);
     }
+    @Override
+    public ArrayList<Leave> getLeaveByUId(Integer workersid) {
+        return leaveDao.getLeaveByUId(workersid);
+    }
 }

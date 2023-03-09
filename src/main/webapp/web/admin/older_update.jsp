@@ -14,7 +14,7 @@
 </head>
 <body style="background: none";>
 <div class="<%--panel admin-panel--%>">
-    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加老人信息</strong></div>
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改老人信息</strong></div>
     <div class="body-content">
         <form class="form-x" id="form-notice">
             <div class="form-group">
@@ -75,6 +75,27 @@
                     <div class="tips"></div>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>家属id：</label>
+                </div>
+                <div class="field">
+                    <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
+                    <input name="familyid" id="familyid" class="input w50" type="text">
+                    <button class="button bg-main icon-check-square-o" type="button" id="btn-select">查询</button>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>家属姓名：</label>
+                </div>
+                <div class="field">
+                    <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
+                    <input name="familyname" id="familyname" class="input w50" type="text" disabled="disabled">
+                    <div class="tips"></div>
+                </div>
+            </div>
             <div class="form-group" >
                 <button class="button bg-main icon-check-square-o" type="button" id="btn-update">修改</button>
             </div>
@@ -98,6 +119,8 @@
                         $("#age").val(json.message.age);
                         $("#addr").val(json.message.addr);
                         $("#tel").val(json.message.tel);
+                        $("#familyid").val(json.message.familyid);
+                        $("#familyname").val(json.message.familyname);
                     }
                     else if(json.status==220)
                     {
@@ -116,27 +139,27 @@
             }
         );
     })
-</script>
-<%--<script type="text/javascript">
-    $("#btn-update").click(function () {
-        let type=$("#type").val();
-        let data=$("#data").val();
-        if(type.length>0&&data.length>0) {
+    $("#btn-select").click(function () {
+        let familyid=$("#familyid").val();
+        if(familyid>0)
+        {
             $.ajax(
                 {
-                    url: "/notice/update",
+                    url: "/family/getfamilyid",
                     type: "POST",
-                    data: {"type":type,"data":data},
+                    data: {"id":familyid},
                     dataType: "JSON",
                     success: function (json) {
                         if(json.status==200)
                         {
-                            location.href='salary_table.jsp';
-                            alert("修改成功！");
-                        }
-                        else if(json.status==220)
-                        {
-                            alert("修改失败！");
+                            if(json.message==null)
+                            {
+                                alert("查无此家属！");
+                                $("#familyname").val("");
+                            }
+                            else {
+                                $("#familyname").val(json.message.username);
+                            }
 
                         }
                         else if(json.status==401)
@@ -156,20 +179,23 @@
         }
 
     });
-</script>--%>
+</script>
 <script>
     $("#btn-update").click(function () {
+        let id=$("#id").val();
         let name=$("#name").val();
         let sex=$("input[name='sex']:checked").val();
         let age=$("#age").val();
         let addr=$("#addr").val();
         let tel=$("#tel").val();
-        if(name.length>0&&sex.length>0&&age>0&&addr.length>0&&tel.length>5) {
+        let familyid=$("#familyid").val();
+        let familyname=$("#familyname").val();
+        if(id.length>0&&name.length>0&&sex.length>0&&age>0&&addr.length>0&&tel.length>5&&familyid.length>0&&familyname.length>0) {
             $.ajax(
                 {
                     url: "/older/update",
                     type: "POST",
-                    data: {"name":name,"sex":sex,"age":age,"addr":addr,"tel":tel},
+                    data: {"id":id,"name":name,"sex":sex,"age":age,"addr":addr,"tel":tel,"familyid":familyid,"familyname":familyname},
                     dataType: "JSON",
                     success: function (json) {
                         if(json.status==200)

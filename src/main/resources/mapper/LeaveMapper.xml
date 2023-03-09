@@ -5,20 +5,23 @@
        INSERT INTO `leave` values (
        null,
        #{workersid},
-       #{name},
+       #{username},
        #{cause},
        #{leave_time},
        #{create_time}
     );
     </insert>
    <update id="Update">
-       UPDATE `leave` SET  `workersid` = #{workersid} ,`name` = #{name},`cause` = #{cause} , `leave_time` = #{leave_time} , `create_time`=#{create_time} WHERE `id`= #{id}
+       UPDATE `leave` SET  `workersid` = #{workersid} ,`username` = #{username},`cause` = #{cause} , `leave_time` = #{leave_time} , `create_time`=#{create_time} WHERE `id`= #{id}
    </update>
     <select id="getAll" resultType="com.jiangbowen.PensionManagement.entity.Leave">
         SELECT * FROM `leave`;
     </select>
     <select id="getLeaveById" resultType="com.jiangbowen.PensionManagement.entity.Leave">
         SELECT * FROM `leave` WHERE `id`=#{id};
+    </select>
+    <select id="getLeaveByUId" resultType="com.jiangbowen.PensionManagement.entity.Leave">
+        SELECT * FROM `leave` WHERE `workersid`=#{workersid};
     </select>
     <delete id="Del">
         DELETE FROM `leave` where `id`=#{id}

@@ -5,17 +5,20 @@
         INSERT INTO `salary` values (
                                        null,
                                        #{workersid},
-                                       #{name},
+                                       #{username},
                                        #{salary},
                                        #{salary_time},
                                        #{create_time}
                                    );
     </insert>
     <update id="Update">
-        UPDATE `salary` SET  `workersid` = #{workersid} ,`name` = #{name},`salary` = #{salary} , `salary_time` = #{salary_time} , `create_time`=#{create_time} WHERE `id`= #{id}
+        UPDATE `salary` SET  `workersid` = #{workersid} ,`username` = #{username},`salary` = #{salary} , `salary_time` = #{salary_time} , `create_time`=#{create_time} WHERE `id`= #{id}
     </update>
     <select id="getAll" resultType="com.jiangbowen.PensionManagement.entity.Salary">
         SELECT * FROM `salary`;
+    </select>
+    <select id="getSalaryByUId" resultType="com.jiangbowen.PensionManagement.entity.Salary">
+        SELECT * FROM `salary` WHERE `workersid`=#{workersid}
     </select>
     <select id="getSalaryById" resultType="com.jiangbowen.PensionManagement.entity.Salary">
         SELECT * FROM `salary` WHERE `id`=#{id};

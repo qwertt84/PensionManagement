@@ -35,4 +35,9 @@ public class OlderServiceImpl implements OlderService {
     public Integer Update(Older older) {
         return olderDao.Update(older);
     }
+
+    @Override
+    public ArrayList<Older> getOlderByUId(Integer uid) {
+        return olderDao.getOlderByUId(uid);
+    }
 }

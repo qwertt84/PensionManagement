@@ -3,6 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/web/admin/older_add.jsp" value="file://$PROJECT_DIR$/src/main/webapp/web/admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/web/family/leave_update.jsp" value="file://$PROJECT_DIR$/src/main/webapp/web/family" />
       </map>
     </option>

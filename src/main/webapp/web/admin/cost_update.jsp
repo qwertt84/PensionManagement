@@ -54,6 +54,7 @@
                 <div class="field">
                     <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
                     <input name="cost" id="cost" class="input w50" type="number">
+                    <label  class="input w50" style="width: 7%">元</label>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -75,15 +76,16 @@
 </div>
 <script type="text/javascript">
     $("#btn-update").click(function () {
+        let id=$("#id").val();
         let olderid=$("#olderid").val();
         let name=$("#name").val();
         let cost=$("#cost").val();
-        if(olderid.length>0&&name.length>0&&cost.length>0) {
+        if(id.length>0&&olderid.length>0&&name.length>0&&cost.length>0) {
             $.ajax(
                 {
                     url: "/cost/update",
                     type: "POST",
-                    data: {"olderid":olderid,"name":name,"cost":cost},
+                    data: {"id":id,"olderid":olderid,"name":name,"cost":cost},
                     dataType: "JSON",
                     success: function (json) {
                         if(json.status==200)

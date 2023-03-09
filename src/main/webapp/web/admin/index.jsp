@@ -31,11 +31,12 @@
         <li><a href="berth_table.jsp" target="right"><span class="icon-caret-right"></span>床位分配管理</a></li>
         <li><a href="cost_table.jsp" target="right"><span class="icon-caret-right"></span>入住费用管理</a></li>
         <li><a href="complain_table.jsp" target="right"><span class="icon-caret-right"></span>投诉管理</a></li>
+        <li><a href="family_table.jsp" target="right"><span class="icon-caret-right"></span>家属管理</a></li>
         <li><a href="workers_table.jsp" target="right"><span class="icon-caret-right"></span>护工信息管理</a></li>
         <li><a href="leave_table.jsp" target="right"><span class="icon-caret-right"></span>护工请假信息管理</a></li>
         <li><a href="salary_table.jsp" target="right"><span class="icon-caret-right"></span>护工薪资管理</a></li>
     </ul>
-    <h2><span class="icon-pencil-square-o"></span>用户设置</h2>
+    <h2><span class="icon-admin"></span>用户设置</h2>
     <ul>
         <li><a href="passwd.jsp" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
     </ul>

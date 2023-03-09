@@ -5,9 +5,9 @@
        INSERT INTO `workers` values
         (
        null,
-       #{username},
+       #{userid},
        #{password},
-       #{name},
+       #{username},
        #{sex},
        #{age},
        #{addr},
@@ -24,6 +24,6 @@
         DELETE FROM `workers` where `id`=#{id};
     </delete>
     <update id="Update">
-        UPDATE `workers` SET  `username` = #{username} ,  `password` = #{password} ,  `name` = #{name} , `sex` = #{sex} ,`age` = #{age} , `addr` = #{addr} ,`tel` = #{tel}  WHERE `id`= #{id};
+        UPDATE `workers` SET  `userid` = #{userid} ,  `password` = #{password} ,  `username` = #{username} , `sex` = #{sex} ,`age` = #{age} , `addr` = #{addr} ,`tel` = #{tel}  WHERE `id`= #{id};
     </update>
 </mapper>

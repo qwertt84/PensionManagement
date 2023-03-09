@@ -14,7 +14,7 @@
 </head>
 <body style="background: none";>
 <div class="<%--panel admin-panel--%>">
-    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加请假</strong></div>
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加薪资信息</strong></div>
     <div class="body-content">
         <form class="form-x" id="form-leave">
             <div class="form-group">
@@ -31,7 +31,7 @@
                     <label>姓名：</label>
                 </div>
                 <div class="field">
-                    <input name="name" id="name" class="input w50" type="text">
+                    <input name="username" id="username" class="input w50" type="text">
                     <div class="tips"></div>
                 </div>
             </div>
@@ -42,6 +42,7 @@
                 <div class="field">
                     <%-- <input name="data" id="data" class="input w50" type="text" style="width: 500px;height: 500px">--%>
                     <input name="salary" id="salary" class="input w50" type="number"/>
+                    <label  class="input w50" style="width: 7%">元</label>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -78,10 +79,10 @@
                             if(json.message==null)
                             {
                                 alert("查无此护工！");
-                                $("#name").val("");
+                                $("#username").val("");
                             }
                             else {
-                                $("#name").val(json.message.name);
+                                $("#username").val(json.message.username);
                             }
 
                         }
@@ -104,7 +105,7 @@
     });
     $("#btn-add").click(function () {
         let workersid=$("#workersid").val();
-        let name=$("#name").val();
+        let username=$("#username").val();
         let salary=$("#salary").val();
         let salary_time=$("#salary_time").val();
         if(workersid.length>0&&name.length>0&&salary.length>0&&salary_time.length>0) {
@@ -112,7 +113,7 @@
                 {
                     url: "/salary/add",
                     type: "POST",
-                    data: {"workersid":workersid,"name":name,"salary":salary,"salary_time":salary_time},
+                    data: {"workersid":workersid,"username":username,"salary":salary,"salary_time":salary_time},
                     dataType: "JSON",
                     success: function (json) {
                         if(json.status==200)
