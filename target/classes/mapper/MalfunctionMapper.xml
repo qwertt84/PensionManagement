@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangbowen.PensionManagement.dao.malfunction.MalfunctionDao">
+    <insert id="Add">
+       INSERT INTO `malfunction` values (
+       null,
+       #{type},
+       #{data},
+       #{create_time}
+    );
+    </insert>
+   <update id="Update">
+       UPDATE `malfunction` SET  `type` = #{type} , `data` = #{data} , `create_time`=#{create_time} WHERE `id`= #{id}
+   </update>
+    <select id="getAll" resultType="com.jiangbowen.PensionManagement.entity.Malfunction">
+        SELECT * FROM `malfunction`;
+    </select>
+    <select id="getMalfunctionById" resultType="com.jiangbowen.PensionManagement.entity.Malfunction">
+        SELECT * FROM `malfunction` WHERE `id`=#{id};
+    </select>
+    <delete id="Del">
+        DELETE FROM `malfunction` where `id`=#{id}
+    </delete>
+</mapper>

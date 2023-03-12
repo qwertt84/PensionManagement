@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangbowen.PensionManagement.dao.user.UserDao">
+    <select id="getAdminById" resultType="com.jiangbowen.PensionManagement.entity.Admin">
+        SELECT * FROM `admin`
+        WHERE `userid`=#{userid} AND `password`=#{password}
+    </select>
+    <update id="AdminUpdate">
+        UPDATE
+            `admin`
+        SET
+            `password`= #{password}
+        WHERE `userid`= #{userid};
+    </update>
+    <select id="getWorkersById" resultType="com.jiangbowen.PensionManagement.entity.Workers">
+        SELECT * FROM `workers`
+        WHERE `userid`=#{userid} AND `password`=#{password}
+    </select>
+    <update id="WorkersUpdate">
+        UPDATE
+            `workers`
+        SET
+            `password`= #{password}
+        WHERE `userid`= #{userid};
+    </update>
+    <select id="getFamilyById" resultType="com.jiangbowen.PensionManagement.entity.Family">
+        SELECT * FROM `family`
+        WHERE `userid`=#{userid} AND `password`=#{password}
+    </select>
+    <update id="FamilyUpdate">
+        UPDATE
+            `family`
+        SET
+            `password`= #{password}
+        WHERE `userid`= #{userid};
+    </update>
+</mapper>

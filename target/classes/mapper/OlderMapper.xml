@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangbowen.PensionManagement.dao.older.OlderDao">
+    <insert id="Add">
+       INSERT INTO `older` values
+        (
+       null,
+       #{name},
+       #{sex},
+       #{age},
+       #{addr},
+       #{tel},
+       #{familyid},
+       #{familyname}
+ );
+    </insert>
+   <select id="getAll" resultType="com.jiangbowen.PensionManagement.entity.Older">
+      SELECT * FROM `older`;
+   </select>
+    <select id="getOlderById" resultType="com.jiangbowen.PensionManagement.entity.Older">
+        SELECT * FROM `older` WHERE `id`=#{id};
+    </select>
+
+    <select id="getOlderByUId" resultType="com.jiangbowen.PensionManagement.entity.Older">
+        SELECT * FROM `older` WHERE `familyid`=#{familyid};
+    </select>
+    <delete id="Del">
+        DELETE FROM `older` where `id`=#{id};
+    </delete>
+    <update id="Update">
+        UPDATE `older` SET  `name` = #{name} , `sex` = #{sex} ,`age` = #{age} , `addr` = #{addr} ,`tel` = #{tel}, `familyid` = #{familyid} ,`familyname` = #{familyname}  WHERE `id`= #{id};
+    </update>
+</mapper>
